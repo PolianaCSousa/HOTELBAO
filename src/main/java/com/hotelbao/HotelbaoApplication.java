@@ -8,6 +8,12 @@ public class HotelbaoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HotelbaoApplication.class, args);
+
+
+		//MENU AQUI
+		//usar Spring RestTemplate
+
+
 	}
 
 }
