@@ -11,6 +11,11 @@ public class HotelbaoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HotelbaoApplication.class, args);
 
+
+		//MENU AQUI
+		//usar Spring RestTemplate
+
+
 		Scanner scanner = new Scanner(System.in);
 
 			System.out.println("===============================================");
