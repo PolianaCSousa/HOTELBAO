@@ -104,7 +104,7 @@ public class UserService {
     //@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<UserDetailsProjection> result
-                = userRepository.searchUserAndRoleByEmail(username);
+                = userRepository.searchUserAndRoleByUsername(username);
 
         if (result.isEmpty()) {
             throw new UsernameNotFoundException("User not found");

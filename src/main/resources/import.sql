@@ -38,7 +38,7 @@ INSERT INTO tb_room (description, price, image_url, created_at, updated_at) VALU
 
 INSERT INTO tb_room (description, price, image_url, created_at, updated_at) VALUES ('Quarto Família com Duas Camas Queen', 270.00, 'https://example.com/img/tb_room20.jpg', '2024-06-20 03:00:00', '2024-06-20 03:00:00');
 
-/* TABELA DE USUARIOS (SEM SENHA)*/
+/* TABELA DE USUARIOS (COM SENHA)*/
 INSERT INTO tb_user (id, name, username, email, phone) VALUES (1, 'Ana Paula Silva', 'anaps', 'ana.silva@example.com', '11999990001');
 
 INSERT INTO tb_user (id, name, username, email, phone) VALUES (2, 'Carlos Henrique', 'carlos.h', 'carlos.henrique@example.com', '21988887772');
@@ -66,5 +66,8 @@ INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
 INSERT INTO tb_role (authority) VALUES ('ROLE_USER');
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_CLIENT');
+
+
+/* INSERINDO ESTADIAS */
 
 
