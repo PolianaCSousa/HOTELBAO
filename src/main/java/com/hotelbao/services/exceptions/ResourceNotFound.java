@@ -1,4 +1,4 @@
-package com.hotelbao.hotel.services.exceptions;
+package com.hotelbao.services.exceptions;
 
 public class ResourceNotFound extends RuntimeException {
 

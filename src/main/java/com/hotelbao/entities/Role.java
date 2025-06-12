@@ -1,9 +1,6 @@
-package com.hotelbao.hotel.entities;
+package com.hotelbao.entities;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Objects;
@@ -13,24 +10,14 @@ import java.util.Objects;
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String authority;
 
-    public Role() {
+    public Role() {}
 
-    }
-
-    public Role(long id, String authority) {
+    public Role(Long id, String authority) {
         this.id = id;
         this.authority = authority;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     @Override
@@ -42,10 +29,18 @@ public class Role implements GrantedAuthority {
         this.authority = authority;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Role role)) return false;
-        return id == role.id;
+        return Objects.equals(id, role.id);
     }
 
     @Override

@@ -1,6 +1,5 @@
-package com.hotelbao.hotel.dto;
-import com.hotelbao.hotel.entities.User;
-import jakarta.persistence.*;
+package com.hotelbao.dtos;
+import com.hotelbao.entities.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
@@ -17,9 +16,7 @@ public class UserDTO {
     @Email(message = "Favor, informar um e-mail válido")
     private String email;
     private String phone;
-
-    private Set<RoleDTO> roles = new HashSet<>();
-
+    Set<RoleDTO> roles = new HashSet<>();
 
     public UserDTO() {
     }
@@ -32,17 +29,15 @@ public class UserDTO {
         this.phone = phone;
     }
 
-    public UserDTO(User user) {
-        id = user.getId();
-        name = user.getName();
-        username = user.getUsername();
-        email = user.getEmail();
-        phone = user.getPhone();
-
-        user.getRoles()
-                .forEach(role ->
-                        roles.add(new RoleDTO(role))
-                );
+    public UserDTO (User entity) {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.username = entity.getUsername();
+        this.email = entity.getEmail();
+        this.phone = entity.getPhone();
+        entity.getRoles().
+                forEach(
+                        role -> this.roles.add(new RoleDTO(role)));
     }
 
     public Long getId() {
@@ -100,8 +95,7 @@ public class UserDTO {
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", roles=" + roles +
+                ", phone='" + phone + '\'' +
                 '}';
     }
-
 }

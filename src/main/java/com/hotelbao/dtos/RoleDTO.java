@@ -1,17 +1,14 @@
-package com.hotelbao.hotel.dto;
+package com.hotelbao.dtos;
 
-import com.hotelbao.hotel.entities.Role;
+import com.hotelbao.entities.Role;
 
 public class RoleDTO {
-
-    private long id;
+    private Long id;
     private String authority;
 
-    public RoleDTO() {
+    public RoleDTO() {}
 
-    }
-
-    public RoleDTO(long id, String authority) {
+    public RoleDTO(Long id, String authority) {
         this.id = id;
         this.authority = authority;
     }
@@ -19,14 +16,13 @@ public class RoleDTO {
     public RoleDTO(Role role) {
         this.id = role.getId();
         this.authority = role.getAuthority();
-
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

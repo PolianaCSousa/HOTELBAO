@@ -37,3 +37,34 @@ INSERT INTO tb_room (description, price, image_url, created_at, updated_at) VALU
 INSERT INTO tb_room (description, price, image_url, created_at, updated_at) VALUES ('Loft Urbano com Decoração Minimalista', 310.00, 'https://example.com/img/tb_room19.jpg', '2024-06-19 02:00:00', '2024-06-19 02:00:00');
 
 INSERT INTO tb_room (description, price, image_url, created_at, updated_at) VALUES ('Quarto Família com Duas Camas Queen', 270.00, 'https://example.com/img/tb_room20.jpg', '2024-06-20 03:00:00', '2024-06-20 03:00:00');
+
+/* TABELA DE USUARIOS (SEM SENHA)*/
+INSERT INTO tb_user (id, name, username, email, phone) VALUES (1, 'Ana Paula Silva', 'anaps', 'ana.silva@example.com', '11999990001');
+
+INSERT INTO tb_user (id, name, username, email, phone) VALUES (2, 'Carlos Henrique', 'carlos.h', 'carlos.henrique@example.com', '21988887772');
+
+INSERT INTO tb_user (id, name, username, email, phone) VALUES (3, 'Juliana Martins', 'julimart', 'juliana.martins@example.com', '31977778883');
+
+INSERT INTO tb_user (id, name, username, email, phone) VALUES (4, 'Rafael Souza', 'rafa.souza', 'rafael.souza@example.com', '41966665544');
+
+INSERT INTO tb_user (id, name, username, email, phone) VALUES (5, 'Mariana Lopes', 'm.lopes', 'mariana.lopes@example.com', '51955554433');
+
+INSERT INTO tb_user (id, name, username, email, phone) VALUES (6, 'Felipe Costa', 'felipe.c', 'felipe.costa@example.com', '61944443322');
+
+INSERT INTO tb_user (id, name, username, email, phone) VALUES (7, 'Bruna Rocha', 'brunarocha', 'bruna.rocha@example.com', '71933332211');
+
+INSERT INTO tb_user (id, name, username, email, phone) VALUES (8, 'Thiago Oliveira', 'thi.oliveira', 'thiago.oliveira@example.com', '81922221100');
+
+INSERT INTO tb_user (id, name, username, email, phone) VALUES (9, 'Amanda Reis', 'amandinha', 'amanda.reis@example.com', '91911110099');
+
+INSERT INTO tb_user (id, name, username, email, phone) VALUES (10, 'Lucas Pereira', 'lucas.p', 'lucas.pereira@example.com', '31900009988');
+
+/* INSERINDO ROLES */
+
+INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
+
+INSERT INTO tb_role (authority) VALUES ('ROLE_USER');
+
+INSERT INTO tb_role (authority) VALUES ('ROLE_CLIENT');
+
+

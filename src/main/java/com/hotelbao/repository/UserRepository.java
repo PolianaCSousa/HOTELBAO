@@ -1,10 +1,10 @@
-package com.hotelbao.hotel.repository;
+package com.hotelbao.repository;
 
-import com.hotelbao.hotel.entities.User;
-import com.hotelbao.hotel.projections.UserDetailsProjection;
+import com.hotelbao.entities.User;
+import com.hotelbao.projections.UserDetailsProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -30,5 +30,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     )
     List<UserDetailsProjection> searchUserAndRoleByUsername(String username);
+
+    List<UserDetailsProjection> searchUserAndRoleByEmail(String email);
 }
 
