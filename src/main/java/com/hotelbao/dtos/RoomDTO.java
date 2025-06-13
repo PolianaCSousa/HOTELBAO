@@ -1,18 +1,25 @@
 package com.hotelbao.dtos;
 
 import com.hotelbao.entities.Room;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 
 //o DTO está pronto
 public class RoomDTO {
 
     private Long id;
+    @Size(min = 5, max = 200, message = "Deve conter entre 5 e 200 caracteres")
+    @NotEmpty(message = "Campo obrigatório")
     private String description;
-    private Float price;
+    @Positive(message = "Preço deve ser um valor positivo")
+    private double price;
     private String image_url;
 
     public RoomDTO() {}
 
-    public RoomDTO(Long id, String description, Float price, String image_url) {
+    public RoomDTO(Long id, String description, double price, String image_url) {
         this.id = id;
         this.description = description;
         this.price = price;
@@ -42,11 +49,11 @@ public class RoomDTO {
         this.description = description;
     }
 
-    public Float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

@@ -16,7 +16,7 @@ public class Room {
 
     private Long id;
     private String description;
-    private Float price;
+    private double price;
     private String image_url;
     private Instant createdAt;
     private Instant updatedAt;
@@ -62,11 +62,11 @@ public class Room {
         this.description = description;
     }
 
-    public Float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
