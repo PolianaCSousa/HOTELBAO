@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(nativeQuery = true,
             value = """
-                    SELECT u.username,
+                    SELECT u.username as username,
                          u.password,
                          r.id as role_id,
                          r.authority
@@ -31,6 +31,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     )
     List<UserDetailsProjection> searchUserAndRoleByUsername(String username);
 
-    List<UserDetailsProjection> searchUserAndRoleByEmail(String email);
 }
 
