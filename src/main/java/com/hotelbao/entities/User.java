@@ -28,7 +28,7 @@ public class User implements UserDetails {
     @JoinTable(name = "tb_user_role",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
@@ -107,11 +107,13 @@ public class User implements UserDetails {
     }
 
     public Set<Role> getRoles() {return roles;}
+
     public void setRoles(Set<Role> roles) {this.roles = roles;}
 
     public void addRole(Role role) {
         roles.add(role);
     }
+
     public boolean hasRole(String roleName) {
         return
                 !roles.stream().filter(

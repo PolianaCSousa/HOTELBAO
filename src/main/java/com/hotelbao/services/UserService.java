@@ -56,12 +56,12 @@ public class UserService {
     public UserDTO insert(UserInsertDTO dto) {
         User entity = new User();
         copyDtoToEntity(dto, entity);
-        entity.setPassword(passwordEncoder.encode(dto.getPassword()));
+        entity.setPassword(
+                passwordEncoder.encode(dto.getPassword()));
         User newUser = userRepository.save(entity);
 
         return new UserDTO(newUser);
     }
-
     private void copyDtoToEntity(UserDTO dto, User entity) {
         entity.setUsername(dto.getUsername());
         entity.setName(dto.getName());
@@ -70,7 +70,7 @@ public class UserService {
 
         entity.getRoles().clear();
         for (RoleDTO role : dto.getRoles()) {
-            Role r = roleRepository.getReferenceById(role.getId()); //diferente do findbyid o getreferencebyid nao carrega relacionamentos ele é mais pra confrimar que aqueel id existe
+            Role r = roleRepository.getReferenceById(role.getId());
             entity.getRoles().add(r);
         }
     }
