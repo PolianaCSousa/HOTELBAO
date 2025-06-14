@@ -3,19 +3,20 @@ package com.hotelbao.dtos;
 import com.hotelbao.entities.Stay;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class StayDTO {
 
     private Long id;
     @NotBlank(message = "Campo obrigatório")
-    private Date startDate;
-    private Date endDate; // se for branco é o próximo dia
+    private LocalDateTime startDate;
+    private LocalDateTime endDate; // se for branco é o próximo dia
 
     public StayDTO() {
     }
 
-    public StayDTO(Long id, Date startDate, Date endDate) {
+    public StayDTO(Long id, LocalDateTime startDate, LocalDateTime endDate) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -35,19 +36,19 @@ public class StayDTO {
         this.id = id;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 

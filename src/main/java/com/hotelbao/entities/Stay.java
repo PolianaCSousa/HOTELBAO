@@ -1,7 +1,9 @@
 package com.hotelbao.entities;
+import com.hotelbao.dtos.StayDTO;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,8 +14,8 @@ public class Stay {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private Instant createdAt;
     private Instant updatedAt;
 
@@ -23,18 +25,18 @@ public class Stay {
     @PreUpdate void preUpdate() {updatedAt = Instant.now();}
 
     @ManyToOne
-    @JoinColumn(name = "id_user") // Define o nome da coluna de chave estrangeira
+    @JoinColumn(name = "user_id") // Define o nome da coluna de chave estrangeira
     private User user; // Relacionamento muitos-para-um com a entidade User
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @JoinColumn(name = "room_id")
+    private Room room;
 
     // <editor-fold desc="Construtores">
     public Stay() {
     }
 
-    public Stay(Long id, Date startDate, Date endDate) {
+    public Stay(Long id, LocalDateTime startDate, LocalDateTime endDate) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -43,6 +45,14 @@ public class Stay {
     public Stay(Stay stay) {
         this.id = stay.id;
         this.startDate = stay.startDate;
+        this.endDate = stay.endDate;
+    }
+
+    public Stay(StayDTO stayDTO) {
+        this.id = stayDTO.getId();
+        this.startDate = stayDTO.getStartDate();
+        this.endDate = stayDTO.getEndDate();
+
     }
     //</editor-fold>
 
@@ -55,19 +65,19 @@ public class Stay {
         this.id = id;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -101,7 +111,7 @@ public class Stay {
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", user=" + user +
-                ", role=" + role +
+                ", room=" + room +
                 '}';
     }
 }

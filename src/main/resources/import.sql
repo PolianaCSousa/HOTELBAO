@@ -67,11 +67,26 @@ INSERT INTO tb_role (authority) VALUES ('ROLE_USER');
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_CLIENT');
 
-INSERT INTO tb_user_role(user_id, role_id) VALUES (1,1);
-INSERT INTO tb_user_role(user_id, role_id) VALUES (2,1);
-INSERT INTO tb_user_role(user_id, role_id) VALUES (2,2);
+/* INSERINDO RELACIONAMENTO DE PAPEIS COM USUARIOS */
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1,1);
 
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2,1);
+
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2,2);
 
 /* INSERINDO ESTADIAS */
+
+INSERT INTO tb_stay (start_date, end_date, created_at, updated_at, user_id, room_id) VALUES ('2025-06-01 14:00:00', '2025-06-05 11:00:00', CURRENT_TIMESTAMP, NULL, 4, 2);
+
+INSERT INTO tb_stay (start_date, end_date, created_at, updated_at, user_id, room_id) VALUES ('2025-06-06 15:30:00', '2025-06-10 10:00:00', CURRENT_TIMESTAMP, NULL, 5, 1);
+
+INSERT INTO tb_stay (start_date, end_date, created_at, updated_at, user_id, room_id) VALUES ('2025-06-07 12:00:00', '2025-06-12 09:00:00', CURRENT_TIMESTAMP, NULL, 6, 3);
+
+INSERT INTO tb_stay (start_date, end_date, created_at, updated_at, user_id, room_id) VALUES ('2025-06-10 16:00:00', '2025-06-14 11:30:00', CURRENT_TIMESTAMP, NULL, 7, 5);
+
+INSERT INTO tb_stay (start_date, end_date, created_at, updated_at, user_id, room_id) VALUES ('2025-10-01 14:00:00', '2025-10-05 11:00:00', CURRENT_TIMESTAMP, NULL, 4, 3);
+
+INSERT INTO tb_stay (start_date, end_date, created_at, updated_at, user_id, room_id) VALUES ('2025-07-07 14:00:00', '2025-07-08 11:00:00', CURRENT_TIMESTAMP, NULL, 4, 4);
+
 
 

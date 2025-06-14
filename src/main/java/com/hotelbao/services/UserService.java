@@ -107,7 +107,7 @@ public class UserService {
                 = userRepository.searchUserAndRoleByUsername(username);
 
         if (result.isEmpty()) {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("Usuário: "+ username +" não encontrado");
         }
 
         User user = new User();
