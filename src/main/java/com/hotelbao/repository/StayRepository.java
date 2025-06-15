@@ -19,4 +19,6 @@ public interface StayRepository extends JpaRepository<Stay, Long> {
 //    List<Stay> findAll();
 
     List<Stay> findByUserId(Long userId);
+
+    List<Stay> findByRoomId(Long roomId);
 }

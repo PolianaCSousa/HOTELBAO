@@ -54,4 +54,44 @@ public class StayService {
         return listDTO;
     }
 
+    // Busca todas as estadias de um determinado quarto - pelo id do quarto
+    @Transactional(readOnly = true)
+    public List<StayDTO> findByRoom(Long roomId) {
+        List<Stay> list = stayRepository.findByRoomId(roomId);
+        List<StayDTO> listDTO = new ArrayList<>();
+        for (Stay stay : list) {
+            listDTO.add(new StayDTO(stay));
+        }
+        return listDTO;
+    }
+
+    @Transactional
+    public StayDTO insert(StayDTO stayDTO) {
+        Stay stay = new Stay();
+
+        stay.setStartDate(stayDTO.getStartDate());
+        stay.setEndDate(stayDTO.getEndDate());
+        stay = stayRepository.save(stay);
+        return new StayDTO(stay);
+    }
+
+
+    // Altera estadia
+    @Transactional
+    public StayDTO update(StayDTO dto, Long id) {
+        Stay entity = stayRepository.getReferenceById(id);
+
+        entity.setStartDate(dto.getStartDate());
+        entity.setEndDate(dto.getEndDate());
+        entity = stayRepository.save(entity);
+        return new StayDTO(entity);
+    }
+
+
+    @Transactional
+    public void delete(Long id) {
+
+        stayRepository.deleteById(id);
+    }
+
 }
