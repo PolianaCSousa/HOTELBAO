@@ -1,5 +1,9 @@
 package com.hotelbao;
 
+import com.hotelbao.dtos.UserDTO;
+import com.hotelbao.dtos.UserInsertDTO;
+import com.hotelbao.entities.User;
+import com.hotelbao.resources.UserResource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -50,20 +54,100 @@ public class HotelbaoApplication {
 
 				scanner.nextLine(); // limpar o buffer
 
+				int opcao2;
 				switch (opcao) {
-					case 1 -> System.out.println("Cadastro de Cliente");
-					case 2 -> System.out.println("Cadastro de Quarto");
-					case 3 -> System.out.println("Cadastro de Estadias");
-					case 4 -> System.out.println("Listar dados dos Clientes");
-					case 5 -> System.out.println("Listar dados dos Quartos");
-					case 6 -> System.out.println("Listar Estadias cadastradas");
-					case 7 -> System.out.println("Emitir nota Fiscal");
-					case 8 -> System.out.println("Limpar banco de dados");
-					case 9 -> System.out.println("Relatório - Maior valor da estadia do cliente");
-					case 10 -> System.out.println("Relatório - Menor valor da estadia do cliente");
-					case 11 -> System.out.println("Relatório - Totalizar as estadias do cliente");
-					case 0 -> System.out.println("Saindo do sistema...");
-					default -> System.out.println("Opção inválida. Tente novamente.");
+					case 1 :
+
+						do {
+							System.out.println("===============================================");
+							System.out.println("============ Cadastro de Cliente ==============");
+							System.out.println("1- Inserir Cliente");
+							System.out.println("2- Deletar Cliente");
+							System.out.println("2- Alterar Cliente");
+							System.out.println("Digite zero para voltar");
+							opcao2 = scanner.nextInt();
+
+							if (opcao2 == 1) {
+								System.out.println("===============================================");
+								System.out.println("=============== Inserir Cliente ===============");
+								System.out.println("= Digite nome do cliente: ");
+								String name = scanner.nextLine();
+								System.out.println("= Digite login do cliente: ");
+								String username = scanner.nextLine();
+								System.out.println("= Digite email do cliente: ");
+								String email = scanner.nextLine();
+								System.out.println("= Digite telefone do cliente: ");
+								String phone = scanner.nextLine();
+								System.out.println("= Digite a senha do cliente: ");
+								String password = scanner.nextLine();
+
+
+							} else if (opcao2 == 2) {
+								System.out.println("===============================================");
+								System.out.println("=============== Deletar Cliente ===============");
+								System.out.println("= Digite username do cliente: ");
+								String username = scanner.nextLine();
+
+
+							} else if (opcao2 == 3) {
+								System.out.println("===============================================");
+								System.out.println("============= Alterar Cliente ===============");
+								System.out.println("= Digite usernome do cliente: ");
+								String username = scanner.nextLine();
+								System.out.println("= Digite nome do cliente: ");
+								String nome = scanner.nextLine();
+								System.out.println("= Digite email do cliente: ");
+								String email = scanner.nextLine();
+								System.out.println("= Digite telefone do cliente: ");
+								String phone = scanner.nextLine();
+
+
+
+							}
+						} while (opcao2 != 0);
+						
+					case 2 :
+						do {
+							System.out.println("===============================================");
+							System.out.println("============== Cadastro de Quarto =============");
+							System.out.println("1- Inserir Quarto");
+							System.out.println("2- Deletar Quarto");
+							System.out.println("2- Alterar Quarto");
+							System.out.println("Digite zero para voltar");
+							opcao2 = scanner.nextInt();
+						} while (opcao2 != 0);
+						
+						
+					case 3:
+						System.out.println("Lançamento de Estadias");
+						
+					case 4:
+						System.out.println("Listar dados dos Clientes");
+						
+					case 5:
+						System.out.println("Listar dados dos Quartos");
+						
+					case 6:
+						System.out.println("Listar Estadias cadastradas");
+					case 7:
+						System.out.println("Emitir nota Fiscal");
+
+					case 8:
+						System.out.println("Limpar banco de dados");
+
+					case 9:
+						System.out.println("Relatório - Maior valor da estadia do cliente");
+
+					case 10:
+						System.out.println("Relatório - Menor valor da estadia do cliente");
+
+					case 11:
+						System.out.println("Relatório - Totalizar as estadias do cliente");
+
+					case 0:
+						System.out.println("Saindo do sistema...");
+
+					default:System.out.println("Opção inválida. Tente novamente.");
 					}
 
 				} while (opcao != 0);

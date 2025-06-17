@@ -1,6 +1,7 @@
 package com.hotelbao.dtos;
 
 import com.hotelbao.entities.Room;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -11,7 +12,7 @@ public class RoomDTO {
 
     private Long id;
     @Size(min = 5, max = 200, message = "Deve conter entre 5 e 200 caracteres")
-    @NotEmpty(message = "Campo obrigatório")
+    @NotBlank(message = "Campo obrigatório")
     private String description;
     @Positive(message = "Preço deve ser um valor positivo")
     private double price;

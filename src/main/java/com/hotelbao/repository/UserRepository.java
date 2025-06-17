@@ -13,8 +13,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
-
-    User findByEmailAndPassword(String email, String password);
+    User findByUsernameAndPassword(String username, String password);
 
     @Query(nativeQuery = true,
             value = """
@@ -25,11 +24,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
                     FROM tb_user u
                     INNER JOIN tb_user_role ur ON u.id = ur.user_id
                     INNER JOIN tb_role r ON r.id = ur.role_id
-                    WHERE u.email = :email
+                    WHERE u.username = :username
                     """
 
     )
     List<UserDetailsProjection> searchUserAndRoleByUsername(String username);
-
 }
 
