@@ -13,12 +13,16 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.net.URI;
 
 
 @RestController
 @RequestMapping(value = "/room") // /rooms é um endpoint
+@Tag(name = "Room", description = "Controller for Rooms")
 public class RoomResource {
 
     @Autowired
@@ -27,7 +31,14 @@ public class RoomResource {
 
 
     //findAll
-    @GetMapping
+    @Operation(
+            description = "Get all rooms",
+            summary = "Get all rooms",
+            responses = {
+                    @ApiResponse(description = "OK", responseCode = "200")
+            }
+    )
+    @GetMapping(produces = "application/json")
     public ResponseEntity<Page<RoomDTO>> findAll(@RequestParam(value = "page", defaultValue = "0") Integer page,
                                                  @RequestParam(value = "size", defaultValue = "20") Integer size,
                                                  @RequestParam(value = "direction",defaultValue = "ASC") String direction,
@@ -42,7 +53,15 @@ public class RoomResource {
 
 
     //findById
-    @GetMapping(value = "/{id}")
+    @Operation(
+            description = "Get a room",
+            summary = "Get a room by its id",
+            responses = {
+                    @ApiResponse(description = "OK", responseCode = "200"),
+                    @ApiResponse(description = "Not found", responseCode = "404")
+            }
+    )
+    @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<RoomDTO> findById(@PathVariable Long id) {
 
         RoomDTO room = roomService.findById(id);
@@ -51,7 +70,17 @@ public class RoomResource {
     }
 
     //insert
-    @PostMapping
+    @Operation(
+            description = "Create a new room",
+            summary = "Create a new room",
+            responses = {
+                    @ApiResponse(description = "Created", responseCode = "201"),
+                    @ApiResponse(description = "Bad Request", responseCode = "400"),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401"),
+                    @ApiResponse(description = "Forbidden", responseCode = "403"),
+            }
+    )
+    @PostMapping(produces = "application/json")
     public ResponseEntity<RoomDTO> insert(@RequestBody RoomDTO roomDTO) {
 
         roomDTO = roomService.insert(roomDTO);
@@ -66,7 +95,18 @@ public class RoomResource {
     }
 
     //update
-    @PostMapping(value = "/{id}")
+    @Operation(
+            description = "Update a room",
+            summary = "Update a room",
+            responses = {
+                    @ApiResponse(description = "OK", responseCode = "200"),
+                    @ApiResponse(description = "Bad Request", responseCode = "400"),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401"),
+                    @ApiResponse(description = "Forbidden", responseCode = "403"),
+                    @ApiResponse(description = "Not found", responseCode = "404")
+            }
+    )
+    @PostMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<RoomDTO> update(@PathVariable Long id, @RequestBody RoomDTO roomDTO) {
 
         roomDTO = roomService.update(roomDTO, id);
@@ -75,6 +115,17 @@ public class RoomResource {
     }
 
     //delete
+    @Operation(
+            description = "Delete a room",
+            summary = "Delete a room",
+            responses = {
+                    @ApiResponse(description = "OK", responseCode = "200"),
+                    @ApiResponse(description = "Bad Request", responseCode = "400"),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401"),
+                    @ApiResponse(description = "Forbidden", responseCode = "403"),
+                    @ApiResponse(description = "Not found", responseCode = "404")
+            }
+    )
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
 
