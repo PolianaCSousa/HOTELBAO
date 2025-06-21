@@ -33,6 +33,7 @@ public class StayService {
         return list.map(stay -> new StayDTO(stay));
 
     }
+
     // Busca estadia pelo id - único
     @Transactional(readOnly = true)
     public StayDTO findById(Long id) {

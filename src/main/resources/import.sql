@@ -88,5 +88,6 @@ INSERT INTO tb_stay (start_date, end_date, created_at, updated_at, user_id, room
 
 INSERT INTO tb_stay (start_date, end_date, created_at, updated_at, user_id, room_id) VALUES ('2025-07-07 14:00:00', '2025-07-08 11:00:00', CURRENT_TIMESTAMP, NULL, 4, 4);
 
+INSERT INTO tb_stay (start_date, end_date, created_at, updated_at, user_id, room_id) VALUES ('2025-07-13 14:00:00', '2025-07-14 14:00:00', CURRENT_TIMESTAMP, NULL, 5, 1);
 
 
