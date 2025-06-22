@@ -53,8 +53,38 @@ public class Stay {
         this.startDate = stayDTO.getStartDate();
         this.endDate = stayDTO.getEndDate();
 
+        //atualiza o id do user e do room
+        if (stayDTO.getUserId() != null) {
+            User user = new User();
+            user.setId(stayDTO.getUserId());
+            this.setUser(user);
+        }
+
+        if (stayDTO.getRoomId() != null) {
+            Room room = new Room();
+            room.setId(stayDTO.getRoomId());
+            this.setRoom(room);
+        }
+
     }
     //</editor-fold>
+
+    //getter e setter para o id do user e do room
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
     // <editor-fold desc="Getter e Setter">
     public Long getId() {

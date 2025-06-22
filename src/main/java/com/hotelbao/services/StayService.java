@@ -1,9 +1,11 @@
 package com.hotelbao.services;
 
 import com.hotelbao.dtos.RoleDTO;
+import com.hotelbao.dtos.RoomDTO;
 import com.hotelbao.dtos.StayDTO;
 import com.hotelbao.dtos.UserDTO;
 import com.hotelbao.entities.Role;
+import com.hotelbao.entities.Room;
 import com.hotelbao.entities.Stay;
 import com.hotelbao.entities.User;
 import com.hotelbao.repository.StayRepository;
@@ -27,12 +29,16 @@ public class StayService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoomService roomService;
+
     @Transactional(readOnly = true)
     public Page<StayDTO> findAll(Pageable pageable) {
         Page<Stay> list = stayRepository.findAll(pageable);
         return list.map(stay -> new StayDTO(stay));
 
     }
+
     // Busca estadia pelo id - único
     @Transactional(readOnly = true)
     public StayDTO findById(Long id) {
@@ -71,6 +77,17 @@ public class StayService {
 
         stay.setStartDate(stayDTO.getStartDate());
         stay.setEndDate(stayDTO.getEndDate());
+
+        // So cria os objetos com o id, sem buscar ou copiar os outros dados
+        User user = new User();
+        user.setId(stayDTO.getUserId());//cria o objeto user apenas com o id
+        stay.setUser(user);//passa o user somente com id para o stay
+
+        Room room = new Room();
+        room.setId(stayDTO.getRoomId());
+        stay.setRoom(room);
+
+
         stay = stayRepository.save(stay);
         return new StayDTO(stay);
     }
@@ -83,6 +100,15 @@ public class StayService {
 
         entity.setStartDate(dto.getStartDate());
         entity.setEndDate(dto.getEndDate());
+
+        User user = new User();
+        user.setId(dto.getUserId());
+        entity.setUser(user);
+
+        Room room = new Room();
+        room.setId(dto.getRoomId());
+        entity.setRoom(room);
+
         entity = stayRepository.save(entity);
         return new StayDTO(entity);
     }
