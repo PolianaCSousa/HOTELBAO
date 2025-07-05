@@ -4,7 +4,6 @@ import com.hotelbao.dtos.StayDTO;
 import com.hotelbao.services.StayService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -81,7 +80,6 @@ public class StayResource {
         List<StayDTO> roomStays = stayService.findByRoom(id);
         return ResponseEntity.ok(roomStays);
     }
-
 
     //insert
     @Operation(

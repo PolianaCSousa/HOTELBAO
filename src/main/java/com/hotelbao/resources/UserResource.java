@@ -1,6 +1,7 @@
 package com.hotelbao.resources;
 import com.hotelbao.dtos.UserDTO;
 import com.hotelbao.dtos.UserInsertDTO;
+import com.hotelbao.projections.RoomDetailsProjection;
 import com.hotelbao.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,25 @@ public class UserResource {
     public ResponseEntity<UserDTO> findById(@PathVariable Long id) {
         UserDTO user = userService.findById(id);
         return ResponseEntity.ok(user);
+    }
+
+    //busca valor estadia mais cara por usuario
+    @GetMapping(value = "/expensive/{id}")
+    public ResponseEntity<RoomDetailsProjection> getExpensiveStay(@PathVariable Long id) {
+        RoomDetailsProjection room = userService.expensiveStay(id);
+        return ResponseEntity.ok(room);
+    }
+
+    //busca valor estadia mais barata por usuario
+    @GetMapping(value = "/cheap/{id}")
+    public RoomDetailsProjection getCheapStay(@PathVariable Long id) {
+        return userService.cheapStay(id);
+    }
+
+    //busca estadia valor total por usuario
+    @GetMapping(value = "/total/{id}")
+    public RoomDetailsProjection getTotalStay(@PathVariable Long id) {
+        return userService.totalStay(id);
     }
 
 

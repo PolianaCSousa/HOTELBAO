@@ -1,12 +1,12 @@
 package com.hotelbao.services;
 
-import com.hotelbao.dtos.RoleDTO;
-import com.hotelbao.dtos.UserDTO;
-import com.hotelbao.dtos.UserInsertDTO;
+import com.hotelbao.dtos.*;
 import com.hotelbao.entities.Role;
 import com.hotelbao.entities.User;
+import com.hotelbao.projections.RoomDetailsProjection;
 import com.hotelbao.projections.UserDetailsProjection;
 import com.hotelbao.repository.RoleRepository;
+import com.hotelbao.repository.StayRepository;
 import com.hotelbao.repository.UserRepository;
 import com.hotelbao.services.exceptions.DatabaseException;
 import com.hotelbao.services.exceptions.ResourceNotFound;
@@ -37,6 +37,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private StayRepository stayRepository;
 
     @Transactional(readOnly = true)
     public Page<UserDTO> findAll(Pageable pageable) {
@@ -136,6 +139,18 @@ public class UserService {
 
         return new UserDTO(novo);
 
+    }
+
+    public RoomDetailsProjection expensiveStay(Long id) {
+        return stayRepository.getMaxPrice(id);
+    }
+
+    public RoomDetailsProjection cheapStay(Long id) {
+        return stayRepository.getMinPrice(id);
+    }
+
+    public RoomDetailsProjection totalStay(Long id) {
+        return stayRepository.getSumPrice(id);
     }
 
 }
