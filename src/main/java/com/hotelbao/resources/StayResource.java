@@ -94,15 +94,21 @@ public class StayResource {
     )
     @PostMapping(produces = "application/json")
     public ResponseEntity<StayDTO> insert(@RequestBody StayDTO dto) {
-        dto = stayService.insert(dto);
+        if(dto.getEndDate() == null){
+            dto.setEndDate(dto.getStartDate().plusDays(1));
+        }
 
-        URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(dto.getId())
-                .toUri();
+        if(stayService.getRoomDate(dto.getRoomId(), dto.getEndDate()).getId() != null) {
+            return ResponseEntity.badRequest().build();
+        }
 
-        return ResponseEntity.created(uri).body(dto);
+            URI uri = ServletUriComponentsBuilder
+                    .fromCurrentRequest()
+                    .path("/{id}")
+                    .buildAndExpand(dto.getId())
+                    .toUri();
+
+            return ResponseEntity.created(uri).body(dto);
     }
 
 

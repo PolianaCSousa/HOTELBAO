@@ -1,10 +1,13 @@
 package com.hotelbao.repository;
 
+import com.hotelbao.dtos.StayDTO;
 import com.hotelbao.entities.Stay;
 import com.hotelbao.projections.RoomDetailsProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public interface StayRepository extends JpaRepository<Stay, Long> {
@@ -44,6 +47,16 @@ public interface StayRepository extends JpaRepository<Stay, Long> {
                         GROUP BY stay.user_id
         """)
     RoomDetailsProjection getSumPrice(Long id);
+
+
+    @Query(nativeQuery = true,
+        value = """
+            SELECT *
+                    FROM tb_stay s 
+                    WHERE s.end_date = :endDate
+                    AND s.room_id = :roomId
+        """)
+    StayDTO getRoomDate(Long roomId, LocalDateTime endDate);
 
 
     List<Stay> findAll();
