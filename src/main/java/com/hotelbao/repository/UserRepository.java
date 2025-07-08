@@ -1,6 +1,7 @@
 package com.hotelbao.repository;
 
 import com.hotelbao.entities.User;
+import com.hotelbao.projections.RoomDetailsProjection;
 import com.hotelbao.projections.UserDetailsProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -29,5 +30,15 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     )
     List<UserDetailsProjection> searchUserAndRoleByUsername(String username);
+
+    @Query(nativeQuery = true,
+    value = """
+        SELECT r.description , r.price
+        FROM tb_user  u
+        INNER JOIN tb_stay s ON s.user_id = u.id
+        INNER JOIN tb_room r ON r.id = s.room_id
+        WHERE u.id = :id
+        """)
+    List<RoomDetailsProjection> searchUserAndRoomByUserId(Long id);
 }
 

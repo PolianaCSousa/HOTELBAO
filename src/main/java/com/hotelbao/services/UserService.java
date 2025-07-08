@@ -153,4 +153,23 @@ public class UserService {
         return stayRepository.getSumPrice(id);
     }
 
+    public String getNfe(Long id) {
+        List<RoomDetailsProjection> lista = userRepository.searchUserAndRoomByUserId(id);
+        Double total = stayRepository.getSumPrice(id).getPrice();
+
+        String nfe = findById(id).getName() + "\n";
+        if (lista != null && !lista.isEmpty()) {
+            for (RoomDetailsProjection p : lista) {
+                nfe += "Quarto: " + p.getDescription();
+                nfe += "\tPreço: " + p.getPrice() + "\n";
+            }
+
+            nfe += "Total: " + total;
+        }
+        else {
+            nfe += "Não possui nenhuma estadia cadastrada!";
+        }
+        return nfe;
+    }
+
 }

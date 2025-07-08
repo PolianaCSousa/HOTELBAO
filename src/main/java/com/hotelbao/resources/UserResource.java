@@ -73,6 +73,11 @@ public class UserResource {
         return userService.totalStay(id);
     }
 
+    @GetMapping(value = "/nfe/{id}")
+    public String getNfe(@PathVariable Long id) {
+        return userService.getNfe(id);
+    }
+
 
     //insert
     @Operation(
