@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -90,6 +91,11 @@ public class StayService {
 
         stay = stayRepository.save(stay);
         return new StayDTO(stay);
+    }
+
+    @Transactional
+    public StayDTO getRoomDate (Long roomId, LocalDateTime endDate) {
+        return new StayDTO(stayRepository.getRoomDate(roomId, endDate));
     }
 
 
