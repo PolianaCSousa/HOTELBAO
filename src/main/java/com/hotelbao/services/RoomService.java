@@ -68,9 +68,11 @@ public class RoomService {
     //delete
     @Transactional
     public void delete(Long id) {
-
-
         roomRepository.deleteById(id);
+    }
 
+    @Transactional
+    public void deleteAllRooms() {
+        roomRepository.deleteAll();
     }
 }

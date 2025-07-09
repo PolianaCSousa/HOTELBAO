@@ -144,4 +144,22 @@ public class StayResource {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(
+            description = "Delete all stays",
+            summary = "Delete all stays",
+            responses = {
+                    @ApiResponse(description = "OK", responseCode = "200"),
+                    @ApiResponse(description = "Bad Request", responseCode = "400"),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401"),
+                    @ApiResponse(description = "Forbidden", responseCode = "403"),
+                    @ApiResponse(description = "Not found", responseCode = "404")
+            }
+    )
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAllStays() {
+
+        stayService.deleteAllStays();
+        return ResponseEntity.noContent().build();
+    }
+
 }

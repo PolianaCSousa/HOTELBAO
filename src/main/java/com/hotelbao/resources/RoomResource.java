@@ -134,6 +134,25 @@ public class RoomResource {
         return ResponseEntity.noContent().build();
     }
 
+
+    @Operation(
+            description = "Delete all rooms",
+            summary = "Delete all rooms",
+            responses = {
+                    @ApiResponse(description = "OK", responseCode = "200"),
+                    @ApiResponse(description = "Bad Request", responseCode = "400"),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401"),
+                    @ApiResponse(description = "Forbidden", responseCode = "403"),
+                    @ApiResponse(description = "Not found", responseCode = "404")
+            }
+    )
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAllRooms() {
+
+        roomService.deleteAllRooms();
+        return ResponseEntity.noContent().build();
+    }
+
 }
 
 

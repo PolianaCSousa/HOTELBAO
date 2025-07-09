@@ -114,7 +114,7 @@ public class UserService {
         }
 
         User user = new User();
-        user.setEmail(result.get(0).getUsername());
+        user.setUsername(result.get(0).getUsername());
         user.setPassword(result.get(0).getPassword());
         for (UserDetailsProjection p : result) {
             user.addRole(new Role(p.getRoleId(),p.getAuthority()));
@@ -170,6 +170,11 @@ public class UserService {
             nfe += "Não possui nenhuma estadia cadastrada!";
         }
         return nfe;
+    }
+
+    @Transactional
+    public void deleteAllUsers() {
+        userRepository.deleteAll();
     }
 
 }

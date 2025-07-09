@@ -120,4 +120,10 @@ public class StayService {
         stayRepository.deleteById(id);
     }
 
+    @Transactional
+    public void deleteAllStays() {
+
+        stayRepository.deleteAll();
+    }
+
 }

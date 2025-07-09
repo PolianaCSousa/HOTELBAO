@@ -141,6 +141,24 @@ public class UserResource {
         return ResponseEntity.noContent().build();
     }
 
+    //delete all users
+    @Operation(
+            description = "Delete all users",
+            summary = "Delete all users",
+            responses = {
+                    @ApiResponse(description = "OK", responseCode = "200"),
+                    @ApiResponse(description = "Bad Request", responseCode = "400"),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401"),
+                    @ApiResponse(description = "Forbidden", responseCode = "403"),
+                    @ApiResponse(description = "Not found", responseCode = "404")
+            }
+    )
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAllUsers() {
+        userService.deleteAllUsers();
+        return ResponseEntity.noContent().build();
+    }
+
     //signup
     @Operation(
             description = "Sign Up",
