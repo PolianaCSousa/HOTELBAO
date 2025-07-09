@@ -114,7 +114,7 @@ public class UserService {
         }
 
         User user = new User();
-        user.setEmail(result.get(0).getUsername());
+        user.setUsername(result.get(0).getUsername());
         user.setPassword(result.get(0).getPassword());
         for (UserDetailsProjection p : result) {
             user.addRole(new Role(p.getRoleId(),p.getAuthority()));
