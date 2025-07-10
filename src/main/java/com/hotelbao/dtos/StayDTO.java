@@ -54,6 +54,9 @@ public class StayDTO {
         }
     }
 
+    public StayDTO(StayDTO roomDate) {
+    }
+
     //geter e setter do id do user e do room
     public Long getUserId() {
         return userId;

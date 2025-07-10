@@ -93,16 +93,26 @@ public class StayResource {
             }
     )
     @PostMapping(produces = "application/json")
-    public ResponseEntity<StayDTO> insert(@RequestBody StayDTO dto) {
+    public ResponseEntity<?> insert(@RequestBody StayDTO dto) {
+        if(dto.getEndDate() == null){
+            dto.setEndDate(dto.getStartDate().plusDays(1));
+        }
+
+        StayDTO existingStay = stayService.getRoomDate(dto.getRoomId(), dto.getEndDate(), dto.getStartDate());
+
+        if (existingStay != null && existingStay.getId() != null) {
+            return ResponseEntity.badRequest().body("Já existe uma estadia conflitante para este quarto e data.");
+        }
+
         dto = stayService.insert(dto);
 
-        URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(dto.getId())
-                .toUri();
+            URI uri = ServletUriComponentsBuilder
+                    .fromCurrentRequest()
+                    .path("/{id}")
+                    .buildAndExpand(dto.getId())
+                    .toUri();
 
-        return ResponseEntity.created(uri).body(dto);
+            return ResponseEntity.created(uri).body(dto);
     }
 
 

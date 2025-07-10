@@ -55,6 +55,14 @@ public class UserResource {
     }
 
     //busca valor estadia mais cara por usuario
+    @Operation(
+            description = "Get most expensive user stay",
+            summary = "Get most expensive user stay by passing the user id",
+            responses = {
+                    @ApiResponse(description = "OK", responseCode = "200"),
+                    @ApiResponse(description = "Not found", responseCode = "404")
+            }
+    )
     @GetMapping(value = "/expensive/{id}")
     public ResponseEntity<RoomDetailsProjection> getExpensiveStay(@PathVariable Long id) {
         RoomDetailsProjection room = userService.expensiveStay(id);
@@ -62,17 +70,41 @@ public class UserResource {
     }
 
     //busca valor estadia mais barata por usuario
+    @Operation(
+            description = "Get most cheap user stay",
+            summary = "Get most cheap user stay by passing the user id",
+            responses = {
+                    @ApiResponse(description = "OK", responseCode = "200"),
+                    @ApiResponse(description = "Not found", responseCode = "404")
+            }
+    )
     @GetMapping(value = "/cheap/{id}")
     public RoomDetailsProjection getCheapStay(@PathVariable Long id) {
         return userService.cheapStay(id);
     }
 
     //busca estadia valor total por usuario
+    @Operation(
+            description = "Get total value of a user stay",
+            summary = "Get total value of a user stay",
+            responses = {
+                    @ApiResponse(description = "OK", responseCode = "200"),
+                    @ApiResponse(description = "Not found", responseCode = "404")
+            }
+    )
     @GetMapping(value = "/total/{id}")
     public RoomDetailsProjection getTotalStay(@PathVariable Long id) {
         return userService.totalStay(id);
     }
 
+    @Operation(
+            description = "Get user Nfe",
+            summary = "Get the user nfe",
+            responses = {
+                    @ApiResponse(description = "OK", responseCode = "200"),
+                    @ApiResponse(description = "Not found", responseCode = "404")
+            }
+    )
     @GetMapping(value = "/nfe/{id}")
     public String getNfe(@PathVariable Long id) {
         return userService.getNfe(id);
