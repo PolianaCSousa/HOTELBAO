@@ -155,10 +155,9 @@ public class UserService {
 
     public String getNfe(Long id) {
         List<RoomDetailsProjection> lista = userRepository.searchUserAndRoomByUserId(id);
-        Double total = stayRepository.getSumPrice(id).getPrice();
-
         String nfe = findById(id).getName() + "\n";
         if (lista != null && !lista.isEmpty()) {
+            Double total = stayRepository.getSumPrice(id).getPrice();
             for (RoomDetailsProjection p : lista) {
                 nfe += "Quarto: " + p.getDescription();
                 nfe += "\tPreço: " + p.getPrice() + "\n";
