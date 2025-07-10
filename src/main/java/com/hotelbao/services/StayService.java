@@ -94,8 +94,14 @@ public class StayService {
     }
 
     @Transactional
-    public StayDTO getRoomDate (Long roomId, LocalDateTime endDate) {
-        return new StayDTO(stayRepository.getRoomDate(roomId, endDate));
+    public StayDTO getRoomDate (Long roomId, LocalDateTime endDate, LocalDateTime startDate) {
+        Stay stay = stayRepository.getRoomDate(roomId, endDate, startDate);
+
+        if (stay == null) {
+            return null;  // ou você pode lançar uma exceção se quiser
+        }
+        return new StayDTO(stay);
+        //return new StayDTO(stayRepository.getRoomDate(roomId, endDate, startDate));
     }
 
 

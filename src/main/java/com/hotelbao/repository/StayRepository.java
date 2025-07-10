@@ -5,6 +5,7 @@ import com.hotelbao.entities.Stay;
 import com.hotelbao.projections.RoomDetailsProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -53,10 +54,17 @@ public interface StayRepository extends JpaRepository<Stay, Long> {
         value = """
             SELECT *
                     FROM tb_stay s 
-                    WHERE s.end_date = :endDate
+                    WHERE ( 
+                            (s.end_date > :endDate AND s.start_date < :endDate)
+                    OR 
+                            (s.end_date > :startDate AND s.start_date < :startDate)
+                    )
                     AND s.room_id = :roomId
         """)
-    StayDTO getRoomDate(Long roomId, LocalDateTime endDate);
+    Stay getRoomDate(
+                        @Param("roomId") Long roomId,
+                        @Param("endDate") LocalDateTime endDate,
+                        @Param("startDate") LocalDateTime startDate);
 
 
     List<Stay> findAll();
