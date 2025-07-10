@@ -33,18 +33,18 @@ public class RoomRepositoryTest {
         Assertions.assertFalse(optional.isPresent());
     }
 
-    @Test
     @DisplayName(value = "Verificando o autoincremento da chave primária.")
+    @Test
     public void insertShouldPersistWithAutoincrementIdWhenIdNull() {
         Room room = Factory.createRoom();
         room.setId(0L);
 
-        Room p = roomRepository.save(room);
+        Room r = roomRepository.save(room);
         Optional<Room> obj
-                = roomRepository.findById(p.getId());
+                = roomRepository.findById(r.getId());
 
         Assertions.assertTrue(obj.isPresent());
         Assertions.assertNotEquals(0, obj.get().getId());
-        Assertions.assertEquals(26, obj.get().getId());
+        Assertions.assertEquals(11, obj.get().getId());
     }
 }

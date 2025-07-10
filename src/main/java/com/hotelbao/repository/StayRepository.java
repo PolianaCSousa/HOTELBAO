@@ -55,9 +55,9 @@ public interface StayRepository extends JpaRepository<Stay, Long> {
             SELECT *
                     FROM tb_stay s 
                     WHERE ( 
-                            (s.end_date > :endDate AND s.start_date < :endDate)
+                            (s.end_date >= :endDate AND s.start_date <= :endDate)
                     OR 
-                            (s.end_date > :startDate AND s.start_date < :startDate)
+                            (s.end_date >= :startDate AND s.start_date <= :startDate)
                     )
                     AND s.room_id = :roomId
         """)

@@ -174,7 +174,16 @@ public class UserService {
     @Transactional
     public void deleteAllUsers() {
         userRepository.deleteAll();
+    }
 
+    @Transactional
+    public void deleteAllRoles(){
+        userRepository.deleteAllRoles();
+    }
+
+    @Transactional
+    public void deleteAllUserRoles(){
+        userRepository.deleteAllUserRoles();
     }
 
 }

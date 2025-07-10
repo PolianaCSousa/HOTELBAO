@@ -1,10 +1,6 @@
 package com.hotelbao.resources;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hotelbao.dtos.RoomDTO;
-import com.hotelbao.entities.Room;
-import com.hotelbao.util.Factory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import org.springframework.test.web.servlet.ResultActions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hotelbao.dtos.RoomDTO;
+import com.hotelbao.entities.Room;
+import com.hotelbao.util.Factory;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -49,7 +50,7 @@ public class RoomResourceIT {
     @Test
     public void findAllShouldReturnSortedPageWhenSortByName() throws Exception {
         ResultActions result = mockMvc.perform(
-                get("") //todo por o caminho
+                get("/room?page=0&size=10&sort=name,asc")
                         .accept(MediaType.APPLICATION_JSON)
         );
 

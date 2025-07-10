@@ -39,6 +39,8 @@ public class AllResource {
     @DeleteMapping
     public ResponseEntity<Void> deleteAllBD() {
         try {
+            userService.deleteAllUserRoles();
+            userService.deleteAllRoles();
             stayService.deleteAllStays();
             userService.deleteAllUsers();
             roomService.deleteAllRooms();
